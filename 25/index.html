@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="task-1">
+        <h2>Task 1</h2>
+        <form class="form-1" method="post">
+            <input type="text" name="arrayBox" id="arrayBox">
+            <button>
+                Send data
+            </button>
+            <button type="reset">
+                Reset
+            </button>
+        </form>
+
+        <div class="output">
+            <h2>Output: </h2>
+            <div class="data">
+    
+            </div>
+        </div>
+    </div>
+
+    <div class="task-2">
+        <h2>Task 2</h2>
+        <form class="form-2" method="post" action="task-2.php">
+            <input type="text" name="countryBox" id="countryBox" placeholder="country">
+            <input type="text" name="capitalBox" id="capitalBox" placeholder="capital">
+            <input type="text" name="sortTypeBox" id="sortTypeBox" style="visibility: hidden;">
+            <div class="btn-group">
+                <button>
+                    Add / View
+                </button>
+                <button type="reset">
+                    Reset
+                </button>
+            </div>
+            <div class="sort-btn-group">
+                <button onclick="setSortType('key')">
+                    Sort by key
+                </button>
+                <button onclick="setSortType('value')">
+                    Sort by value
+                </button>
+            </div>
+        </form>
+    </div>
+</body>
+
+<style>
+    div {
+        padding: .5rem 0;
+    }
+</style>
+
+<script>
+    const formTask1 = document.querySelector('.form-1');
+    const dataDiv = document.querySelector('.data');
+
+    formTask1.addEventListener('submit', (event) => {
+        event.preventDefault();
+        const array = document.querySelector('#arrayBox').value;
+        fetch('task-1.php', {
+            method: 'POST',
+            body: JSON.stringify({ array: array }),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+            .then(response => response.json())
+            .then(data => {
+                dataDiv.innerHTML = '<pre>' + "Position zero element - " + JSON.stringify(data, null, 2) + '</pre>';
+            });
+    });
+
+    function setSortType(sortType) {
+        let sortTypeBox = document.querySelector("#sortTypeBox");
+
+        sortTypeBox.value = sortType;
+
+        console.log(sortTypeBox.value);
+    }
+</script>
+
+</html>

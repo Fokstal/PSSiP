@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PSSiP</title>
+</head>
+<body>
+    <div class="links">
+
+    </div>
+</body>
+
+<script>
+    const COUNT_LAB = 9;
+    const PHP_LAB_START = 24;
+
+    let links = document.querySelector(".links");
+    
+    for (let i = PHP_LAB_START; i < PHP_LAB_START + COUNT_LAB; i++) {
+        let link = document.createElement("a");
+
+        link.href = i;
+        link.innerHTML = `Lab #${i}`;
+        link.style.display = "block";
+        link.style.margin = "10px";
+
+        if (i === 28) {
+            link.href = 27;
+        }
+
+        links.appendChild(link);
+    }
+    
+</script>
+
+</html>

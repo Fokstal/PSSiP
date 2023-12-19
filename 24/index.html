@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="task-1">
+        <h2>Task 1</h2>
+        <form method="post" action="task_1.php">
+            <input type="text" name="numBox1">
+            <input type="text" name="numBox2">
+            <input type="text" name="numBox3">
+            <button>
+                Send data
+            </button>
+            <input type="reset" value="Reset">
+        </form>
+    </div>
+
+    <div class="task-2">
+        <h2>Task 2</h2>
+        <form method="post" action="task_2.php">
+            <input type="text" name="aBox" placeholder="a">
+            <input type="text" name="bBox" placeholder="b">
+            <input type="text" name="cBox" placeholder="c">
+            <button>
+                Send data
+            </button>
+            <input type="reset" value="Reset">
+        </form>
+    </div>
+
+    <div class="task-3">
+        <h2>Task 3</h2>
+        <form method="post" action="task_3.php">
+            <input type="text" name="numBox1">
+            <input type="text" name="numBox2">
+            <div class="btn-group">
+                <button>+</button>
+                <button>-</button>
+                <button>*</button>
+                <button>/</button>
+            </div>
+            <input type="text" name="operationBox" id="operationBox" hidden>
+            <input type="reset" value="Reset">
+        </form>
+    </div>
+</body>
+
+<script>
+    function sendDataByValueBtn(event) {
+        let currentBtn = event.target;
+
+        document.querySelector("#operationBox").value = currentBtn.innerHTML;
+    }
+
+
+    let btnGroup = document.querySelector(".btn-group");
+
+    btnGroup.querySelectorAll("button").forEach(btn => {
+        btn.addEventListener("click", (event) => {
+            sendDataByValueBtn(event);
+        });
+    });
+</script>
+
+</html>

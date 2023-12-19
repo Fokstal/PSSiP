@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="tasks-block block">
+        <div class="task-1">
+            <h2>Task #1</h2>
+            <input type="text" name="lineBox" placeholder="Line" id="lineBox">
+            <input type="text" name="charToFindBox" placeholder="Char" id="charToFindBox">
+    
+            <button onclick="requestTaskByNum(1, createJsonDataByNameEl('#lineBox', '#charToFindBox'))">
+                Get count on char in line
+            </button>
+        </div>
+    
+        <div class="task-2">
+            <h2>Task #2</h2>
+            <input type="text" name="lineBox" placeholder="Line" id="lineCaseBox">
+            <div>
+                <input type="radio" name="caseLineRadio" id="upperCase" value="upperCase">
+                <label for="upperCase">Upper</label>
+            </div>
+            <div>
+                <input type="radio" name="caseLineRadio" id="lowerCase" value="lowerCase" checked>
+                <label for="lowerCase">Lower</label>
+            </div>
+            <div>
+                <input type="radio" name="caseLineRadio" id="specialCase" value="specialCase">
+                <label for="specialCase">Special</label>
+            </div>
+    
+            <button onclick="requestTaskByNum(2, createJsonDataByNameEl('input[name=caseLineRadio]:checked', '#lineCaseBox'))">
+                Get line
+            </button>
+        </div>
+    
+        <div class="task-3">
+            <h2>Task #3</h2>
+            <button onclick="requestTaskByNum(3)">
+                Get ASCII table
+            </button>
+        </div>
+    
+        <div class="file-operation-block">
+            <div class="task-4">
+                <h2>Task #4</h2>
+                <button onclick="requestTaskByNum(4)">
+                    Get RUSSIA ALPHABET from txt file
+                </button>
+            </div>
+        
+            <div class="task-5">
+                <h2>Task #5</h2>
+                <button onclick="requestTaskByNum(5)">
+                    Swap info in FILES
+                </button>
+            </div>
+        
+            <div class="task-6">
+                <h2>Task #6</h2>
+                <button onclick="requestTaskByNum(6)">
+                    Get
+                </button>
+            </div>
+        </div>
+    
+        <div class="task-7">
+            <h2>Task #7</h2>
+            <button onclick="requestTaskByNum(7)">
+                Get current date
+            </button>
+        </div>
+    
+        <div class="task-8">
+            <h2>Task #8</h2>
+            <input type="text" name="dateBox" id="dateBox">
+            <button onclick="requestTaskByNum(8, createJsonDataByNameEl('#dateBox'))">
+                Get day by date
+            </button>
+        </div>
+    </div>
+
+    <hr>
+
+    <div class="response-block block">
+        <h3 style="color: blue;">Response:</h3>
+        <h2 class="response"></h2>
+    </div>
+</body>
+
+<style>
+    div[class*=task] {
+        padding: 0 0 3rem 0;
+    }
+
+    .block {
+        display: block;
+        width: 40%;
+    }
+
+    body {
+        display: flex;
+    }
+
+    .file-operation-block {
+        display: flex;
+    }
+
+    .file-operation-block > div {
+        padding: 0 1rem;
+    }
+</style>
+
+<script>
+    function createJsonDataByNameEl(...names) {
+        let jsonData = {};
+
+        names.forEach(el => {
+            jsonData[el] = document.querySelector(`${el}`).value;
+        });
+
+        return JSON.stringify(jsonData);
+    }
+
+    function requestTaskByNum(num, dataToRequest) {
+        fetch(`26/task-${num}.php`, {
+            headers: {
+                "Content-Type": "application/json",
+            },
+            method: "POST",
+            body: dataToRequest,
+        })
+            .then(resp => resp.text())
+            .then(data => setDataToResponseBlock(data))
+            .catch(err => setDataToResponseBlock(err))
+    }
+
+    function setDataToResponseBlock(data) {
+        document.querySelector(".response").innerHTML = data
+    }
+</script>
+
+</html>

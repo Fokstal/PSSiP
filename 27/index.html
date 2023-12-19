@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <form action="27/login.php" method="post">
+        <div class="input">
+            <input type="text" name="loginBox" id="req" placeholder="Login" required>
+            <input type="email" name="emailBox" id="req" placeholder="email321@email.com" required>
+            <input type="password" name="passwordBox" id="req" placeholder="Password" required>
+
+            <div class="non-required-block">
+                <input type="number" name="ageBox" id="" placeholder="Age">
+                <input type="text" name="fioBox" id="" placeholder="FIO">
+            </div>
+
+            <div class="sex-box">
+                <input type="radio" name="sexBox" value="male" id="male" checked>
+                <label for="male">Male</label>
+
+                <input type="radio" name="sexBox" value="female" id="female">
+                <label for="female">FeMale</label>
+            </div>
+
+            <button>
+                Login
+            </button>
+        </div>
+    </form>
+</body>
+
+<style>
+    form {
+        display: block;
+        width: 70%;
+        margin: 0 auto;
+    }
+
+    .input > input {
+        display: block;
+        margin: 1rem auto;
+    }
+
+    #req {
+        border: 1px orchid solid;
+    }
+
+    .non-required-block {
+        margin: 4rem 0;
+    }
+
+    .non-required-block > input {
+        display: block;
+        margin: 1rem auto;
+    }
+
+    .sex-box {
+        width: 6%;
+        display: block;
+        margin: 0 auto;
+    }
+
+    button {
+        display: block;
+        margin: 3rem auto;
+        width: 10rem;
+    }
+</style>
+
+</html>
+
